@@ -1,7 +1,7 @@
 /**
  * author hexiaolei
  * 2014-05-02
- * fork on github:
+ * fork on github: https://github.com/Hquestion/waterfallLayout
  *
  * 实现原理：
  * 1.获取所需瀑布流布局的所有节点
