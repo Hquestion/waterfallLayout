@@ -6,7 +6,7 @@ waterfallLayout
  使用说明：
 ===============
 
-$("selector").waterfallLayout({
+    $("selector").waterfallLayout({
          "marginLeft": 20,
         "marginTop": 15,
         "picPadding": 10,
