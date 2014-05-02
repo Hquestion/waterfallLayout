@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link type="text/css" rel="stylesheet" href="./css/main.css"/>
+    <script type="text/javascript" src="./js/jquery-1.10.2.js"></script>
+    <script type="text/javascript" src="js/jquery.waterfallLayout.js"></script>
+    <script type="text/javascript" src="./js/jquery.waitforimages.js"></script>
+    <script type="text/javascript" src="./js/blocksit.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var $ulDom = $("#album");
+            for(var index = 1;index <= 15; index++){
+                var liDom$ = $("<li><img/><div class='mask'></div><div id='title'>"+ "图片—" + index +"</div></li>");
+                liDom$.find("img").attr("src", "./pic/" + index + ".jpg");
+                liDom$.appendTo($ulDom);
+            }
+            console.log($ulDom.html());
+            $(window).load(function(){
+                $("#album").waterfallLayout();
+            })
+        });
+
+        window.onscroll = function(){
+            if(reachBottom()){
+                var $ulDom = $("#album");
+                for(var index = 16;index <= 30; index++){
+                    var liDom$ = $("<li><img/><div class='mask'></div><div id='title'>"+ "图片—" + index +"</div></li>");
+                    liDom$.find("img").attr("src", "./pic/" + index + ".jpg");
+                    liDom$.appendTo($ulDom);
+                }
+                $ulDom.waitForImages(function(){
+                    $(this).waterfallLayout({});
+                });
+            }
+        };
+
+        $(function(){
+
+        });
+
+        function reachBottom() {
+            var scrollTop = 0;
+            var clientHeight = 0;
+            var scrollHeight = 0;
+            if (document.documentElement && document.documentElement.scrollTop) {
+                scrollTop = document.documentElement.scrollTop;
+            } else if (document.body) {
+                scrollTop = document.body.scrollTop;
+            }
+            if (document.body.clientHeight && document.documentElement.clientHeight) {
+                clientHeight = (document.body.clientHeight < document.documentElement.clientHeight) ? document.body.clientHeight: document.documentElement.clientHeight;
+            } else {
+                clientHeight = (document.body.clientHeight > document.documentElement.clientHeight) ? document.body.clientHeight: document.documentElement.clientHeight;
+            }
+            scrollHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+            if (scrollTop + clientHeight >= scrollHeight - 50) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <section>
+        <ul id="album">
+        </ul>
+    </section>
+</body>
+</html>
